@@ -3,6 +3,7 @@ package com.example.stivi.puntanegra;
 import android.*;
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -19,6 +20,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -62,9 +64,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+
     }
     protected void onStart() {
         mGoogleApiClient.connect();
@@ -92,6 +93,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         /*mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
         mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));*/
         locloc = mLastLocation != null;
+        if (locloc) {
+            LatLng sydney = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+            drawCircle(sydney);
+
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        }
     }
     public void onLocationChanged(Location location) {
         // New location has now been determined
@@ -102,6 +109,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // You can now create a LatLng Object for use with maps
         mLastLocation.setLatitude(location.getLatitude());
         mLastLocation.setLongitude(location.getLongitude());
+
         //origen = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
        // pos.setCenter(origen);
         //MarkerOrigen.setPosition(origen);
@@ -125,5 +133,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String no= "no";
     }
 
+
+    private void drawCircle(LatLng point){
+
+        // Instantiating CircleOptions to draw a circle around the marker
+        CircleOptions circleOptions = new CircleOptions();
+
+        // Specifying the center of the circle
+        circleOptions.center(point);
+
+        // Radius of the circle
+        circleOptions.radius(20);
+
+        // Border color of the circle
+        circleOptions.strokeColor(Color.BLACK);
+
+        // Fill color of the circle
+        circleOptions.fillColor(0x30ff0000);
+
+        // Border width of the circle
+        circleOptions.strokeWidth(2);
+
+        // Adding the circle to the GoogleMap
+        mMap.addCircle(circleOptions);
+
+    }
 
 }
