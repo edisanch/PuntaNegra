@@ -20,8 +20,10 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener  {
@@ -65,6 +67,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener()
+        {
+
+            @Override
+            public boolean onMarkerClick(Marker arg0) {
+
+
+               /* if(arg0.getTitle().equals("MyHome")) // if marker source is clicked
+                    Toast.makeText(MainActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();// display toast*/
+                return true;
+            }
+
+        });
+        Marker perth= mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(-2.1233857, -79.9004497))
+                .title("MINI MARKET PIERITO")
+                .draggable(false)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+                );
+
+
 
     }
     protected void onStart() {
