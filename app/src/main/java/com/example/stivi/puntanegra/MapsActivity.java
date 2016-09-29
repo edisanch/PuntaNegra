@@ -1,6 +1,8 @@
 package com.example.stivi.puntanegra;
 
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 
 
@@ -114,40 +116,45 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public boolean onMarkerClick(Marker mark) {
 
 
-                    LatLng point = mark.getPosition();
+
                     // Already two locations
-                    if (MarkerPoints.size() > 1) {
-                        MarkerPoints.clear();
-                        mMap.clear();
-                    }
+                   // if (MarkerPoints.size() > 1) {
+                    //    MarkerPoints.clear();
+                    //    mMap.clear();
+                   // }
 
                     // Adding new item to the ArrayList
-                    MarkerPoints.add(point);
+                   // MarkerPoints.add(point);
 
                     // Creating MarkerOptions
-                    MarkerOptions options = new MarkerOptions();
+                   // MarkerOptions options = new MarkerOptions();
 
                     // Setting the position of the marker
-                    options.position(point);
+                   // options.position(point);
 
                     /**
                      * For the start location, the color of marker is GREEN and
                      * for the end location, the color of marker is RED.
                      */
-                    if (MarkerPoints.size() == 1) {
+                  /*  if (MarkerPoints.size() == 1) {
                         options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                     } else if (MarkerPoints.size() == 2) {
                         options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
                     }
-
+*/
 
                     // Add new marker to the Google Map Android API V2
-                    mMap.addMarker(options);
+                    //mMap.addMarker(options);
 
                     // Checks, whether start and end locations are captured
-                    if (MarkerPoints.size() >= 2) {
+                  //  if (MarkerPoints.size() >= 2) {
+
+                LatLng origin = new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
+                LatLng dest = mark.getPosition();
+
+                /*
                         LatLng origin = MarkerPoints.get(0);
-                        LatLng dest = MarkerPoints.get(1);
+                        LatLng dest = MarkerPoints.get(1);*/
 
                         // Getting URL to the Google Directions API
                         String url = getUrl(origin, dest);
@@ -159,7 +166,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         //move map camera
                         mMap.moveCamera(CameraUpdateFactory.newLatLng(origin));
                         mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
-                    }
+                  //  }
 
 
 
@@ -176,14 +183,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
 
-
+        int height = 100;
+        int width = 100;
+        BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.puntanegraico) ;
+       //BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.mipmap.marker);
+        Bitmap b=bitmapdraw.getBitmap();
+        Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
 
         Marker perth= mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(-2.1233857, -79.9004497))
                 .title("MINI MARKET PIERITO")
                 .draggable(false)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
                 );
+        Marker perth1= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.1272666, -79.9054713))
+                        .title("LICORERA HAS LA VACA")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
 
 
 
@@ -358,6 +378,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             // Drawing polyline in the Google Map for the i-th route
             if(lineOptions != null) {
+
+                mMap.clear();
+
                 mMap.addPolyline(lineOptions);
             }
             else {
@@ -387,12 +410,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         /*mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
         mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));*/
         locloc = mLastLocation != null;
-        if (locloc) {
-            LatLng sydney = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-            drawCircle(sydney);
 
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        }
     }
     public void onLocationChanged(Location location) {
         // New location has now been determined
@@ -428,30 +446,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    private void drawCircle(LatLng point){
 
-        // Instantiating CircleOptions to draw a circle around the marker
-        CircleOptions circleOptions = new CircleOptions();
-
-        // Specifying the center of the circle
-        circleOptions.center(point);
-
-        // Radius of the circle
-        circleOptions.radius(20);
-
-        // Border color of the circle
-        circleOptions.strokeColor(Color.BLACK);
-
-        // Fill color of the circle
-        circleOptions.fillColor(0x30ff0000);
-
-        // Border width of the circle
-        circleOptions.strokeWidth(2);
-
-        // Adding the circle to the GoogleMap
-        mMap.addCircle(circleOptions);
-
-    }
 
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
