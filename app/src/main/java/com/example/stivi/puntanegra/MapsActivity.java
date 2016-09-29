@@ -189,7 +189,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
     protected void onStart() {
-        mGoogleApiClient.connect();
+       // mGoogleApiClient.connect();
         super.onStart();
     }
 
