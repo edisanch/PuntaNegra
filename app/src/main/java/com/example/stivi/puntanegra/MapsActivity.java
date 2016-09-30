@@ -17,6 +17,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -53,7 +54,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     public GoogleApiClient mGoogleApiClient;
-    public Location mLastLocation;
+    public Location mLastLocation ;
     public boolean locloc = false;
     ArrayList<LatLng> MarkerPoints;
 
@@ -108,7 +109,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         // Add a marker in Sydney and move the camera
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener()
         {
 
@@ -165,7 +166,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         FetchUrl.execute(url);
                         //move map camera
                         mMap.moveCamera(CameraUpdateFactory.newLatLng(origin));
-                        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+                       // mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
                   //  }
 
 
@@ -185,7 +186,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         int height = 100;
         int width = 100;
-        BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.puntanegraico) ;
+
+        ;
+        BitmapDrawable bitmapdraw = (BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.puntanegraico, null) ;
+        //BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.drawable.puntanegraico) ;
        //BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.mipmap.marker);
         Bitmap b=bitmapdraw.getBitmap();
         Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
@@ -204,6 +208,149 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
                 //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
         );
+        Marker perth2= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.1422681, -79.8966948))
+                        .title("LICORERA EL BOTELLÓN")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+        Marker perth3= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.1697625, -79.897733))
+                        .title("ECONOMARKET CENTRÓPOLIS")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+        Marker perth4= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-1.0268377, -79.4689835))
+                        .title("VENTAS CORP DISTRIBUIDORA")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+        Marker perth5= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.1651747,	-79.9207737))
+                        .title("MINI MARKET RICOS")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+        Marker perth6= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.174768	,-79.9056525))
+                        .title("DESPENSA URDESA")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+        Marker perth7= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.1696812,	-79.9099482))
+                        .title("JUNIORS MARKET")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+        Marker perth8= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.2011701,	-79.8858717))
+                        .title("COMERCIAL ANDRESITO")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+        Marker perth9= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.2012563	,-79.88638))
+                        .title("SELECT DRINKS")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+        Marker perth10= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-1.7986284	,-79.5339113))
+                        .title("LICORERA ROMANOS")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+        Marker perth11= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.1206607,	-79.9005785))
+                        .title("LICORERA LA BARATITA")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+        Marker perth12= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.1906227,	-79.8818245))
+                        .title("ECONOMARKET LA MERCED")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+        Marker perth13= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.1958917	,-79.8881455))
+                        .title("LA REPRESA DE LOS LICORES")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+        Marker perth14= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.1889624	,-79.8943523))
+                        .title("ECONOMARKET HURTADO")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+        Marker perth15= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.0563895	,-79.9194502))
+                        .title("JUMBO MARKET")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+
+        Marker perth16= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.1907072	,-79.8827524))
+                        .title("ECONOMARKET P. YCAZA")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+        Marker perth17= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.1955807	,-79.8969005))
+                        .title("AVÍCOLA EL RANCHO")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+        Marker perth18= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.1938397	,-79.8814415))
+                        .title("ECONOMARKET PICHINCHA")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+        Marker perth19= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.0377117,	-79.8706795))
+                        .title("MINI MARKET AREVALOS")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+
+        Marker perth21= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.1289624	,-79.8646127))
+                        .title("NELSON MARKET")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+        Marker perth22= mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(-2.1742447,	-79.9072015))
+                        .title("STOP MARKET")
+                        .draggable(false)
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+                //.icon(BitmapDescriptorFactory.fromResource(R.drawable.puntanegraico))
+        );
+
 
 
 
@@ -379,7 +526,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // Drawing polyline in the Google Map for the i-th route
             if(lineOptions != null) {
 
-                mMap.clear();
+               // mMap.clear();
 
                 mMap.addPolyline(lineOptions);
             }
@@ -410,6 +557,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         /*mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
         mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));*/
         locloc = mLastLocation != null;
+        LatLng pos = new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(pos));
 
     }
     public void onLocationChanged(Location location) {
